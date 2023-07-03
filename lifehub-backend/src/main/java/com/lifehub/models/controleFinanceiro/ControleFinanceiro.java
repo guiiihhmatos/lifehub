@@ -2,6 +2,7 @@ package com.lifehub.models.controleFinanceiro;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.lifehub.models.Usuario;
 
 import jakarta.persistence.Entity;
@@ -22,6 +23,7 @@ public class ControleFinanceiro {
 	private Integer id;
 	
 	@OneToOne
+	@JsonIgnore
 	private Usuario usuario;
 	
 	private BigDecimal saldo;

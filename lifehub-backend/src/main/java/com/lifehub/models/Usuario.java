@@ -2,9 +2,10 @@ package com.lifehub.models;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.lifehub.models.controleFinanceiro.ControleFinanceiro;
-import com.lifehub.models.tarefa.Tarefa;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,10 +31,11 @@ public class Usuario {
 	private String senha;
 	
 	
-	@OneToOne(mappedBy = "usuario")
+	@OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
+	@JsonIgnore
     private ControleFinanceiro controleFinanceiro;
 
-    @OneToMany(mappedBy = "usuario")
-    private List<Tarefa> tarefas;
+    //@OneToMany(mappedBy = "usuario")
+    //private List<Tarefa> tarefas;
 	
 }
