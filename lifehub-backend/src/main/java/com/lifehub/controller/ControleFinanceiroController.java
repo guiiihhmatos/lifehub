@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.*;
 import com.lifehub.models.controleFinanceiro.ControleFinanceiro;
 import com.lifehub.service.ControleFinanceiroService;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
+@Tag(name = "Controle Financeiro")
 @RequestMapping("/controle-financeiro")
 public class ControleFinanceiroController {
 	

@@ -17,7 +17,10 @@ import com.lifehub.models.controleFinanceiro.Despesa;
 import com.lifehub.service.ControleFinanceiroService;
 import com.lifehub.service.DespesaService;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
+@Tag(name = "Despesas")
 @RequestMapping("/despesas")
 public class DespesaController {
 

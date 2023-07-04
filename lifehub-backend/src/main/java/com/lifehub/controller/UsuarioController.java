@@ -15,7 +15,10 @@ import com.lifehub.models.controleFinanceiro.ControleFinanceiro;
 import com.lifehub.service.ControleFinanceiroService;
 import com.lifehub.service.UsuarioService;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
+@Tag(name = "Usuario")
 @RequestMapping("/usuario")
 public class UsuarioController {
 	
