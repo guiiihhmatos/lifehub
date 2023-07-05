@@ -28,7 +28,7 @@ public class ControleFinanceiroService {
 		return result;
 	}
 
-	@Transactional(readOnly = true)
+	@Transactional
     public ControleFinanceiro salvarControleFinanceiro(ControleFinanceiro controleFinanceiro) {
         return financeiroRepository.save(controleFinanceiro);
     }

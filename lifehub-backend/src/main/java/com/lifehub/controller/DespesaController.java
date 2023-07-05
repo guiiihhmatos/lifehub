@@ -1,6 +1,5 @@
 package com.lifehub.controller;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lifehub.DTO.DespesaDTO;
-import com.lifehub.models.controleFinanceiro.ControleFinanceiro;
 import com.lifehub.models.controleFinanceiro.Despesa;
-import com.lifehub.service.ControleFinanceiroService;
 import com.lifehub.service.DespesaService;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -26,31 +23,15 @@ public class DespesaController {
 
     @Autowired
     private DespesaService despesaService;
-    
-    @Autowired
-    private ControleFinanceiroService controleFinanceiroService;
 
     @PostMapping
-    public Despesa criarDespesa(@RequestBody DespesaDTO despesaDTO) {
-    	
-        ControleFinanceiro controleFinanceiro = controleFinanceiroService.findById(despesaDTO.getId_controleFinanceiro());
+    public Despesa criarDespesa(@RequestBody DespesaDTO despesaDTO) throws Exception {
 
-        Despesa despesa = new Despesa();
-        despesa.setDescricao(despesaDTO.getDescricao());
-        despesa.setValor(despesaDTO.getValor());
-        despesa.setData(despesaDTO.getData());
-        despesa.setControleFinanceiro(controleFinanceiro);
-
-        BigDecimal novoSaldo = controleFinanceiro.getSaldo().subtract(despesaDTO.getValor());
-        controleFinanceiro.setSaldo(novoSaldo);
-        controleFinanceiroService.salvarControleFinanceiro(controleFinanceiro);
-
-        return despesaService.salvarDespesa(despesa);
+        return despesaService.salvarDespesa(despesaDTO);
     }
     
     @GetMapping("/{id}")
-    public List<Despesa> listarDespesaPorControleFinanceiro(@PathVariable("id") Long id)
-    {
+    public List<Despesa> listarDespesaPorControleFinanceiro(@PathVariable("id") Long id) throws Exception {
     	return despesaService.listarDespesaPorControleFinanceiro(id);
     }
 

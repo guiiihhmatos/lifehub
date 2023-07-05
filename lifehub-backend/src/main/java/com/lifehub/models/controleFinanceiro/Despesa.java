@@ -3,6 +3,7 @@ package com.lifehub.models.controleFinanceiro;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

@@ -19,8 +19,7 @@ public class ControleFinanceiroController {
     private ControleFinanceiroService controleFinanceiroService;
 
 	@GetMapping
-	public List<ControleFinanceiro> getAllControleiro()
-	{	
+	public List<ControleFinanceiro> getAllControleiro() throws Exception{	
 		return controleFinanceiroService.listarControle();
 	}
 	
