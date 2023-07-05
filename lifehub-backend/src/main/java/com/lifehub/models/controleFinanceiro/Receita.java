@@ -3,6 +3,8 @@ package com.lifehub.models.controleFinanceiro;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,6 +25,7 @@ public class Receita {
     private Date data;
 
     @ManyToOne
+    @JsonIgnore()
     private ControleFinanceiro controleFinanceiro;
 
 

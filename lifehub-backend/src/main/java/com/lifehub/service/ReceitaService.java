@@ -11,35 +11,37 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.lifehub.DTO.DespesaDTO;
+import com.lifehub.DTO.ReceitaDTO;
 import com.lifehub.models.controleFinanceiro.ControleFinanceiro;
-import com.lifehub.models.controleFinanceiro.Despesa;
+import com.lifehub.models.controleFinanceiro.Receita;
 import com.lifehub.models.controleFinanceiro.SaldoHistorico;
-import com.lifehub.repository.DespesaRepository;
+import com.lifehub.repository.ReceitaRepository;
 
 @Service
-public class DespesaService {
-
+public class ReceitaService {
+	
 	@Autowired
-	private DespesaRepository despesaRepository;
-
+	private ReceitaRepository receitaRepository;
+	
 	@Autowired
 	private ControleFinanceiroService controleFinanceiroService;
 	
 	@Autowired
 	private SaldoHistoricoService saldoHistoricoService;
-
-	@Transactional(rollbackFor = Exception.class)
-	public Despesa salvarDespesa(DespesaDTO despesaDTO) {
-
+	
+	@Transactional
+	public Receita salvarReceita(ReceitaDTO receitaDTO) throws Exception {
+		
 		ControleFinanceiro controleFinanceiro = controleFinanceiroService
-				.findById(despesaDTO.getId_controleFinanceiro());
-
-		Despesa despesa = new Despesa();
-		BeanUtils.copyProperties(despesaDTO, despesa);
-		despesa.setControleFinanceiro(controleFinanceiro);
-
-		BigDecimal novoSaldo = controleFinanceiro.getSaldo().subtract(despesaDTO.getValor());
+				.findById(receitaDTO.getId_controleFinanceiro());
+		
+		Receita receita = new Receita();
+		
+		BeanUtils.copyProperties(receitaDTO, receita);
+		
+		receita.setControleFinanceiro(controleFinanceiro);
+		
+		BigDecimal novoSaldo = controleFinanceiro.getSaldo().add(receitaDTO.getValor());
 		controleFinanceiro.setSaldo(novoSaldo);
 		controleFinanceiroService.salvarControleFinanceiro(controleFinanceiro);
 		
@@ -59,20 +61,21 @@ public class DespesaService {
 	    }
 
 	    saldoHistoricoService.salvarSaldoHistorico(saldoHistorico);
-	    
-
-		return despesaRepository.save(despesa);
+		
+		return receitaRepository.save(receita);
+		
 	}
-
+	
 	@Transactional(readOnly = true)
-	public List<Despesa> listarDespesaPorControleFinanceiro(@PathVariable Long id) {
+	public List<Receita> listarReceitaPorControleFinanceiro(@PathVariable Long id) {
 		ControleFinanceiro controleFinanceiro = controleFinanceiroService.findById(id);
 
 		if (controleFinanceiro != null) {
-			return despesaRepository.findByControleFinanceiroId(id);
+			return receitaRepository.findByControleFinanceiroId(id);
 		}
 
 		return Collections.emptyList();
 	}
 
+	
 }
