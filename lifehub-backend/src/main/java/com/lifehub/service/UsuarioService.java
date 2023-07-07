@@ -2,12 +2,14 @@ package com.lifehub.service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.lifehub.DTO.UsuarioRequestDTO;
+import com.lifehub.exception.emailJaCadastradoException;
 import com.lifehub.models.Usuario;
 import com.lifehub.models.controleFinanceiro.ControleFinanceiro;
 import com.lifehub.repository.ControleFinanceiroRepository;
@@ -22,6 +24,7 @@ public class UsuarioService {
 	@Autowired
 	private ControleFinanceiroRepository controleFinanceiroRepository;
 
+	@Transactional
 	public Usuario salvarUsuario(UsuarioRequestDTO requestDTO)
 	{
 		Usuario usuario = new Usuario();
@@ -41,8 +44,16 @@ public class UsuarioService {
         return usuario;
 	}
 	
+	@Transactional(readOnly = true)
 	public List<Usuario> listarUsuarios()
 	{
+		
 		return usuarioRepository.findAll();
+	}
+	
+	@Transactional
+	public Optional<Usuario> emailExists(UsuarioRequestDTO usuarioRequestDTO) throws emailJaCadastradoException
+	{
+		return Optional.ofNullable(usuarioRepository.findByEmail(usuarioRequestDTO.getEmail()));
 	}
 }
