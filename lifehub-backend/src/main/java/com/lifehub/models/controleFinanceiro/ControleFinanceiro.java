@@ -3,7 +3,7 @@ package com.lifehub.models.controleFinanceiro;
 import java.math.BigDecimal;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.lifehub.models.Usuario;
+import com.lifehub.models.usuario.Usuario;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

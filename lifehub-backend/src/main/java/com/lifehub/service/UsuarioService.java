@@ -10,8 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.lifehub.DTO.UsuarioRequestDTO;
 import com.lifehub.exception.emailJaCadastradoException;
-import com.lifehub.models.Usuario;
 import com.lifehub.models.controleFinanceiro.ControleFinanceiro;
+import com.lifehub.models.usuario.Usuario;
 import com.lifehub.repository.ControleFinanceiroRepository;
 import com.lifehub.repository.UsuarioRepository;
 

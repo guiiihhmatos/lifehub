@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lifehub.DTO.UsuarioRequestDTO;
 import com.lifehub.exception.emailJaCadastradoException;
-import com.lifehub.models.Usuario;
+import com.lifehub.models.usuario.Usuario;
 import com.lifehub.service.UsuarioService;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
