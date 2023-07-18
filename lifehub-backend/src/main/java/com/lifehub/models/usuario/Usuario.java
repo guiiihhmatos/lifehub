@@ -41,12 +41,10 @@ public class Usuario implements UserDetails{
 	private String email;
 	
 	@NotNull
-	@JsonIgnore
-	private String senha;
+	private String password;
 	
 	
 	@OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
-	@JsonIgnore
     private ControleFinanceiro controleFinanceiro;
 
 
@@ -88,8 +86,7 @@ public class Usuario implements UserDetails{
 
 	@Override
 	public String getPassword() {
-		// TODO Auto-generated method stub
-		return null;
+		return password;
 	}
 	
 }

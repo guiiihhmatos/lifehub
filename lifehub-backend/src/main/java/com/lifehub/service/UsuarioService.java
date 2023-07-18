@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lifehub.DTO.UsuarioRequestDTO;
+import com.lifehub.DTO.UsuarioResponseDTO;
 import com.lifehub.exception.emailJaCadastradoException;
 import com.lifehub.models.controleFinanceiro.ControleFinanceiro;
 import com.lifehub.models.usuario.Usuario;
@@ -31,7 +32,8 @@ public class UsuarioService {
         usuario.setNome(requestDTO.getNome());
         usuario.setTelefone(requestDTO.getTelefone());
         usuario.setEmail(requestDTO.getEmail());
-        usuario.setSenha(requestDTO.getSenha());
+        usuario.setPassword(requestDTO.getPassword());
+        usuario.setRole(requestDTO.getRole());
 
         ControleFinanceiro controleFinanceiro = new ControleFinanceiro();
         controleFinanceiro.setSaldo(BigDecimal.ZERO);
@@ -45,10 +47,10 @@ public class UsuarioService {
 	}
 	
 	@Transactional(readOnly = true)
-	public List<Usuario> listarUsuarios()
+	public List<UsuarioResponseDTO> listarUsuarios()
 	{
 		
-		return usuarioRepository.findAll();
+		return usuarioRepository.findAll().stream().map(x -> new UsuarioResponseDTO(x)).toList();
 	}
 	
 	@Transactional
