@@ -30,6 +30,8 @@ public class WebSecurityConfig{
 				.authorizeHttpRequests(authorize -> authorize
 						.requestMatchers(HttpMethod.POST, "/usuario/login").permitAll()
 						.requestMatchers(HttpMethod.POST, "/controle-financeiro").hasRole("ADMIN")
+						.requestMatchers(HttpMethod.POST, "/usuario").hasRole("ADMIN")
+						.requestMatchers(HttpMethod.GET, "/usuario").hasRole("ADMIN")
 						.anyRequest().authenticated()
 				)
 				.addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
