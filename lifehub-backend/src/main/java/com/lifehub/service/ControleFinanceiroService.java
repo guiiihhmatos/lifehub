@@ -27,6 +27,12 @@ public class ControleFinanceiroService {
 		ControleFinanceiro result = financeiroRepository.findById(id).get();
 		return result;
 	}
+	
+	@Transactional(readOnly = true)
+	public ControleFinanceiro findByIdUsuario(@PathVariable Long idUsuario) {
+		ControleFinanceiro result = financeiroRepository.findByUsuario(idUsuario);
+		return result;
+	}
 
 	@Transactional
     public ControleFinanceiro salvarControleFinanceiro(ControleFinanceiro controleFinanceiro) {

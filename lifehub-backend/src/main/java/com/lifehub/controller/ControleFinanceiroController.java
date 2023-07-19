@@ -19,8 +19,20 @@ public class ControleFinanceiroController {
     private ControleFinanceiroService controleFinanceiroService;
 
 	@GetMapping
-	public List<ControleFinanceiro> getAllControleiro() throws Exception{	
+	public List<ControleFinanceiro> getAllControleFinanceiro() throws Exception{	
 		return controleFinanceiroService.listarControle();
+	}
+	
+	@GetMapping("/{id}")
+	public ControleFinanceiro getControleFinanceiroByID(@PathVariable("id") Long id) throws Exception{
+		
+		return controleFinanceiroService.findById(id);
+	}
+	
+	@GetMapping("/usuario/{usuarioId}")
+	public ControleFinanceiro getControleFinanceiroByUsuarioID(@PathVariable("usuarioId") Long usuarioId) throws Exception{
+		
+		return controleFinanceiroService.findByIdUsuario(usuarioId);
 	}
 	
 }

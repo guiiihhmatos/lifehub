@@ -29,7 +29,7 @@ public class WebSecurityConfig{
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.authorizeHttpRequests(authorize -> authorize
 						.requestMatchers(HttpMethod.POST, "/usuario/login").permitAll()
-						.requestMatchers(HttpMethod.POST, "/controle-financeiro").hasRole("ADMIN")
+						.requestMatchers(HttpMethod.GET, "/controle-financeiro").hasRole("ADMIN")
 						.requestMatchers(HttpMethod.POST, "/usuario").hasRole("ADMIN")
 						.requestMatchers(HttpMethod.GET, "/usuario").hasRole("ADMIN")
 						.anyRequest().authenticated()
