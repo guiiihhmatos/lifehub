@@ -1,0 +1,75 @@
+$azul-sereno: #89B0AE;
+$azul-claro: #A4C6D8;
+$azul-escuro: #3C6382;
+$roxo-claro: #9E91C3;
+$roxo-escuro: #614F8C;
+
+
+.login_container
+{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  .login
+  {
+    width: 900px;
+    height: 500px;
+
+    .login_img
+    {
+      width: 50%;
+      background-color: $roxo-claro;
+      height: 100%;
+
+      .titulo
+      {
+        margin-right: 200px;
+        font-size: 32px;
+        color: $roxo-escuro;
+        font-weight: 800;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      }
+
+      .image
+      {
+        height: 400px;
+        width: 400px;
+      }
+    }
+
+    .login_inputs
+    {
+      width: 50%;
+      height: 100%;
+
+      .button
+      {
+        border: none;
+        height: 40px;
+        width: 180px;
+        background-color: $roxo-claro;
+        font-size: 16px;
+        color: white;
+        font-weight: 600;
+      }
+
+      .form-group
+      {
+        width: 300px;
+
+        .form-label
+        {
+          font-size: 16px;
+          color: $roxo-claro;
+          font-weight: 500;
+        }
+
+      }
+
+    }
+  }
+}
+
+
